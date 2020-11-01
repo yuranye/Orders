@@ -2,14 +2,20 @@
 Simple dummy orders service for showcase
 
 #Protos
-To add new service to project run 
-`dotnet grpc add-file -i Protos Protos/orders/*`
+To get proto files run `git submodule update --init`
 
-If you need to generate client fot another service use:
-`dotnet grpc add-file -S=Client -i Protos Protos/[service_folder]/*`
+To update proto submodule to new commits run `git submodule update --remote --rebase`
 
--i attribute are required if you are using imports
+To add new service to project run
+`<ItemGroup>`
+    `<Protobuf Include="../../proto/[service_name]/*.proto" ProtoRoot="../../proto" />`
+`</ItemGroup>` 
+
+Additional imports can be added `AdditionalImportDirs="[additiona_imports_path]"` 
+
+If you need to generate only client add `GrpcServices="Client"`
 
 After adding all required files hit build
 
-https://docs.microsoft.com/ru-ru/aspnet/core/grpc/dotnet-grpc?view=aspnetcore-3.1
+For more information about dotnet grpc look here
+https://docs.microsoft.com/en-US/aspnet/core/grpc/dotnet-grpc?view=aspnetcore-3.1

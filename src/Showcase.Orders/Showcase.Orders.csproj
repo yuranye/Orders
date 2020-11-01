@@ -5,4 +5,7 @@
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="../../proto/orders/*.proto" ProtoRoot="../../proto" />
+  </ItemGroup>
 </Project>

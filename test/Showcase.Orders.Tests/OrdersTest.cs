@@ -16,23 +16,30 @@ namespace Showcase.Orders.Tests
         }
         
         [Fact]
-        public async Task Test1()
+        public async Task ShouldCreateOrder()
         {
             var client = new OrdersService.OrdersServiceClient(_fixture.GrpcChannel);
 
-            var placeOrderRequest = new PlaceOrderRequest
+            var placeOrderRequest = new CreateOrderRequest
             {
                 Order = new Order
                 {
                     Count = 10,
                     DeliveryUuid = Guid.NewGuid().ToString(),
-                    ProductUuid = Guid.NewGuid().ToString()
-                }
+                    ProductUuid = Guid.NewGuid().ToString(),
+                },
             };
-            
-            var response = await client.PlaceOrderAsync(placeOrderRequest);
 
-            response.Order.Should().Be(placeOrderRequest.Order);
+            var response = await client.CreateOrderAsync(placeOrderRequest);
+
+            placeOrderRequest.Order.OrderUuid = response.Order.OrderUuid;//normalise response
+
+            var persistedOrder = await client.GetOrderAsync(new GetOrderRequest
+            {
+                OrderUuid = response.Order.OrderUuid,
+            });
+
+            persistedOrder.Order.Should().Be(placeOrderRequest.Order);
         }
     }
 }

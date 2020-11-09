@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Showcase.Orders;
 using Xunit;
 
 namespace Showcase.Orders.Tests

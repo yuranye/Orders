@@ -9,7 +9,7 @@ using Npgsql;
 
 namespace Showcase.Orders.Services
 {
-    public class OrdersService: Showcase.Orders.OrdersService.OrdersServiceBase
+    public class OrdersService: Orders.OrdersService.OrdersServiceBase
     {
         private readonly string _connectionString;
 

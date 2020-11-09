@@ -351,3 +351,6 @@ MigrationBackup/
 
 #jetBrains
 .idea/
+
+#grpc generated files
+src/Showcase.Orders/Protos

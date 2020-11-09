@@ -5,11 +5,20 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Dapper.SqlBuilder" Version="2.0.35" />
+    <PackageReference Include="Google.Protobuf" Version="3.13.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.33.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.32.0" PrivateAssets="All" />
     <PackageReference Include="Npgsql" Version="4.1.5" />
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="../../proto/google/api/*.proto" ProtoRoot="../../proto" />
-    <Protobuf Include="../../proto/orders/*.proto" ProtoRoot="../../proto" />
+    <Protobuf Include="../../proto/google/api/*.proto" OutputDir="Protos" CompileOutputs="false" ProtoRoot="../../proto" />
+    <Protobuf Include="../../proto/clients/*.proto" OutputDir="Protos" CompileOutputs="false" ProtoRoot="../../proto" GrpcServices="Client" />
+    <Protobuf Include="../../proto/clients/v2/*.proto" OutputDir="Protos" CompileOutputs="false" ProtoRoot="../../proto" GrpcServices="Client" />
+    <Protobuf Include="../../proto/delivery/*.proto" OutputDir="Protos" CompileOutputs="false" ProtoRoot="../../proto" GrpcServices="Client" />
+    <Protobuf Include="../../proto/orders/*.proto" OutputDir="Protos" CompileOutputs="false" ProtoRoot="../../proto" GrpcServices="Both" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Protos" />
   </ItemGroup>
 </Project>
